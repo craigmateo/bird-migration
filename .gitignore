@@ -1,1 +1,16 @@
+# Ignore compiled class files
+bin/
+*.class
+
+# Ignore database credentials
 db.properties
+
+# Ignore MySQL connector JAR
+lib/*.jar
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
