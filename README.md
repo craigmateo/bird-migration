@@ -16,15 +16,14 @@ This is a simple Java project that connects to a MySQL database and can be exten
 
 ## 📁 Project Structure
 
-bird-migration/
-├── bin/ # Compiled Java .class files
-├── lib/
-│ └── mysql-connector-j-9.3.0.jar # JDBC driver
-├── src/
-│ └── BirdMigrationApp.java # Main Java source file
-├── db.properties # Database credentials (not versioned)
-└── run.sh # Compile + Run script
-
+    bird-migration/
+    ├── bin/ # Compiled Java .class files
+    ├── lib/
+    │ └── mysql-connector-j-9.3.0.jar # JDBC driver
+    ├── src/
+    │ └── BirdMigrationApp.java # Main Java source file
+    ├── db.properties # Database credentials (not versioned)
+    └── run.sh # Compile + Run script
 
 ---
 
