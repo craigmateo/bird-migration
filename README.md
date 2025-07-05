@@ -1,6 +1,6 @@
-# 🐦 Bird Migration Java + MySQL Demo
+# 🐦 Bird Migration Java + MySQL Demo (Maven)
 
-This is a simple Java project that connects to a MySQL database and can be extended to explore bird migration patterns — potentially using real-world data from sources like [eBird](https://documenter.getpostman.com/view/664302/ebird-api-20/2HTbHW).
+This Java project connects to a MySQL database and can be extended to explore bird migration patterns — potentially using real-world data from sources like [eBird](https://documenter.getpostman.com/view/664302/ebird-api-20/2HTbHW).
 
 ---
 
@@ -9,54 +9,66 @@ This is a simple Java project that connects to a MySQL database and can be exten
 - Java Development Kit (JDK) installed and on your PATH
 - MySQL installed and running locally
 - MySQL Workbench (optional GUI)
-- MySQL Connector/J (`mysql-connector-j-9.3.0.jar`)
+- Maven installed and configured
 - Bash (WSL or Linux terminal)
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structure (Maven Standard)
 
     bird-migration/
-    ├── bin/ # Compiled Java .class files
-    ├── lib/
-    │ └── mysql-connector-j-9.3.0.jar # JDBC driver
     ├── src/
-    │ └── BirdMigrationApp.java # Main Java source file
-    ├── db.properties # Database credentials (not versioned)
-    └── run.sh # Compile + Run script
+    │ ├── main/
+    │ │ ├── java/
+    │ │ │ └── com/craig/birdmigration/
+    │ │ │ └── BirdMigrationApp.java # Main Java source file
+    │ │ └── resources/
+    │ │ └── db.properties # Database credentials (not versioned)
+    ├── target/ # Compiled classes and packaged JARs (auto-generated)
+    ├── pom.xml # Maven project file
+    └── run.sh # Optional script to run Maven commands
+
 
 ---
 
 ## 🔧 Setup Steps
 
 1. **Create the database in MySQL**:
+
     ```sql
     CREATE DATABASE bird_migration;
     USE bird_migration;
     ```
 
-    (Add a `birds` table as needed.)
+2. **Configure your database credentials**:
 
-2. **Download MySQL Connector/J**:
-    - Place `mysql-connector-j-9.3.0.jar` into the `lib/` folder.
+    Create `src/main/resources/db.properties` (add to `.gitignore`):
 
-3. **Create `db.properties` in the project root**:
     ```properties
     db.url=jdbc:mysql://localhost:3306/bird_migration
     db.user=root
     db.password=your_password_here
     ```
 
-4. **Use `run.sh` to compile and run the project**:
+3. **Build the project with Maven**:
+
     ```bash
-    ./run.sh
+    mvn compile
     ```
+
+4. **Run the project**:
+
+    ```bash
+    mvn exec:java -Dexec.mainClass="com.craig.birdmigration.BirdMigrationApp"
+    ```
+
+    *(Make sure you have added the `exec-maven-plugin` in your `pom.xml` for this.)*
 
 ---
 
 ## 🚀 Current Features
 
-- Connects to local MySQL
+- Connects to local MySQL using Maven dependencies
 - Reads credentials from `db.properties`
 - Executes a basic `SELECT * FROM birds` query (if table exists)
 
@@ -74,5 +86,4 @@ This is a simple Java project that connects to a MySQL database and can be exten
 ## 🔒 Security Notes
 
 - Never commit `db.properties` with real credentials to version control.
-- Add it to `.gitignore` if using Git.
-
+- Add it to `.gitignore`.
