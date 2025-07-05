@@ -6,7 +6,7 @@ bin/
 db.properties
 
 # Ignore MySQL connector JAR
-# lib/*.jar
+lib/*.jar
 
 # Ignore VS Code settings (optional)
 .vscode/
