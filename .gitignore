@@ -1,14 +1,7 @@
 # Ignore compiled class files
-bin/
 *.class
 
-# Ignore database credentials
-db.properties
-
-# Ignore MySQL connector JAR
-lib/*.jar
-
-# Ignore VS Code settings (optional)
+# Ignore VS Code settings
 .vscode/
 
 # Ignore OS junk
