@@ -1,11 +1,9 @@
 #!/bin/bash
 
-echo "🔨 Compiling..."
-javac -cp "lib/mysql-connector-j-9.3.0.jar" -d bin src/BirdMigrationApp.java
+#!/bin/bash
 
-if [ $? -eq 0 ]; then
-    echo "🚀 Running..."
-    java -cp "bin:lib/mysql-connector-j-9.3.0.jar" BirdMigrationApp
-else
-    echo "❌ Compilation failed."
-fi
+echo "🔨 Compiling with Maven..."
+mvn compile
+
+echo "🚀 Running application..."
+mvn exec:java -Dexec.mainClass="com.craig.BirdMigrationApp"
