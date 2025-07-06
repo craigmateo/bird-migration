@@ -1,27 +1,28 @@
 package com.craig.birdmigration.controller;
 
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
 import com.craig.birdmigration.model.Bird;
 import com.craig.birdmigration.repository.BirdRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/birds")
 public class BirdController {
 
-    private final BirdRepository repository;
+    private final BirdRepository birdRepository;
 
-    public BirdController(BirdRepository repository) {
-        this.repository = repository;
+    public BirdController(BirdRepository birdRepository) {
+        this.birdRepository = birdRepository;
     }
 
     @GetMapping
     public List<Bird> getAllBirds() {
-        return repository.findAll();
+        return birdRepository.findAll();
     }
 
     @PostMapping
     public Bird addBird(@RequestBody Bird bird) {
-        return repository.save(bird);
+        return birdRepository.save(bird);
     }
 }

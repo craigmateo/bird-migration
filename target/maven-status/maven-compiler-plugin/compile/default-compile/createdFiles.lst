@@ -1,0 +1,4 @@
+com/craig/birdmigration/controller/BirdController.class
+com/craig/birdmigration/BirdMigrationApplication.class
+com/craig/birdmigration/model/Bird.class
+com/craig/birdmigration/repository/BirdRepository.class

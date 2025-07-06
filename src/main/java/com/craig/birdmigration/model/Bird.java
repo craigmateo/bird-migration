@@ -1,14 +1,27 @@
 package com.craig.birdmigration.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Bird {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String species;
-    private String location;
-    
-    // Getters and setters
+
+    private String commonName;
+    private String scientificName;
+    private String family;
+
+    // Getters and Setters
+    public Long getId() { return id; }
+
+    public String getCommonName() { return commonName; }
+    public void setCommonName(String commonName) { this.commonName = commonName; }
+
+    public String getScientificName() { return scientificName; }
+    public void setScientificName(String scientificName) { this.scientificName = scientificName; }
+
+    public String getFamily() { return family; }
+    public void setFamily(String family) { this.family = family; }
 }
