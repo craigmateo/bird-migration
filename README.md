@@ -6,11 +6,11 @@ This Java project connects to a MySQL database and can be extended to explore bi
 
 ## ✅ Prerequisites
 
-- Java Development Kit (JDK) installed and on your PATH
-- MySQL installed and running locally
-- MySQL Workbench (optional GUI)
-- Maven installed and configured
-- Bash (WSL or Linux terminal)
+- Java Development Kit (JDK) installed and on your PATH  
+- MySQL installed and running locally  
+- MySQL Workbench (optional GUI)  
+- Maven installed and configured  
+- Bash (WSL or Linux terminal)  
 
 ---
 
@@ -27,6 +27,8 @@ This Java project connects to a MySQL database and can be extended to explore bi
     ├── target/ # Compiled classes and packaged JARs (auto-generated)
     ├── pom.xml # Maven project file
     └── run.sh # Optional script to run Maven commands
+
+---
 
 
 ---
@@ -50,40 +52,49 @@ This Java project connects to a MySQL database and can be extended to explore bi
     db.password=your_password_here
     ```
 
-3. **Build the project with Maven**:
+3. **(Recommended) Use environment variables for secrets**
+
+    Instead of hardcoding credentials, export environment variables in your terminal or OS profile:
+
+    ```bash
+    export DB_USER=root
+    export DB_PASSWORD=your_password_here
+    export EBIRD_API_TOKEN=your_ebird_api_key_here
+    ```
+
+    These can be referenced in `application.properties` or your Java code as `${DB_USER}`, `${DB_PASSWORD}`, and `${EBIRD_API_TOKEN}`. This approach keeps your secrets out of the codebase.
+
+4. **Build the project with Maven**:
 
     ```bash
     mvn compile
     ```
 
-4. **Run the project**:
+5. **Run the project**:
 
     ```bash
-    mvn exec:java -Dexec.mainClass="com.craig.birdmigration.BirdMigrationApp"
+    mvn spring-boot:run
     ```
 
-    *(Make sure you have added the `exec-maven-plugin` in your `pom.xml` for this.)*
+    *(Make sure you have the `spring-boot-maven-plugin` configured in your `pom.xml`.)*
 
 ---
 
 ## 🚀 Current Features
 
-- Connects to local MySQL using Maven dependencies
-- Reads credentials from `db.properties`
-- Executes a basic `SELECT * FROM birds` query (if table exists)
+- Connects to local MySQL using Maven dependencies  
+- Reads credentials from `db.properties` or environment variables  
+- REST API exposes endpoints to:  
+  - Fetch birds from the database  
+  - Query eBird API for real-time bird data if not in local DB (e.g., `/api/ebird/bird/{name}`)  
+- Saves eBird API results into the local database for caching  
 
 ---
 
-## 🧭 Next Ideas
+## 🐦 eBird API Integration
 
-- Add insertion logic for birds and locations
-- Integrate eBird API for real-time migration data
-- Display migration routes on an interactive map (JavaFX or web frontend)
-- Add user input or filters
-
----
-
-## 🔒 Security Notes
-
-- Never commit `db.properties` with real credentials to version control.
-- Add it to `.gitignore`.
+- Base URL: `https://api.ebird.org/v2/`  
+- Example endpoint to get recent observations for a region:  
+  `GET /data/obs/{regionCode}/recent`  
+- Authentication:  
+  Include your API token in the header for all requests:  
