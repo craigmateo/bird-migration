@@ -1,5 +1,5 @@
 package com.craig.birdmigration.controller;
-
+import com.craig.birdmigration.dto.SightingRequest;
 import com.craig.birdmigration.model.*;
 import com.craig.birdmigration.repository.*;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +26,11 @@ public class SightingController {
     @PostMapping("/sightings")
     public ResponseEntity<Sighting> recordSighting(@RequestBody SightingRequest request) {
         // Check or create bird
-        Bird bird = birdRepository.findByCommonNameContainingIgnoreCase(request.getBirdName())
+        Bird bird = birdRepository.findByCommonNameContainingIgnoreCase(request.getBirdCommonName())
                 .stream().findFirst().orElse(null);
         if (bird == null) {
             bird = new Bird();
-            bird.setCommonName(request.getBirdName());
+            bird.setCommonName(request.getBirdCommonName());
             bird.setFamily("Unknown");
             bird.setScientificName("Unknown");
             bird = birdRepository.save(bird);

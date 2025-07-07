@@ -1,5 +1,6 @@
-import java.time.LocalDate;
+package com.craig.birdmigration.model;
 
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -28,5 +29,43 @@ public class Sighting {
     private LocalDate sightingDate;
     private String observerName;
 
-    // Constructors, Getters, Setters
+    // Bird getter/setter
+    public Bird getBird() {
+        return bird;
+    }
+    public void setBird(Bird bird) {
+        this.bird = bird;
+    }
+
+    // Location getter/setter
+    public Location getLocation() {
+        return location;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    // RouteId getter/setter
+    public Long getRouteId() {
+        return routeId;
+    }
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
+
+    // SightingDate getter/setter
+    public LocalDate getSightingDate() {
+        return sightingDate;
+    }
+    public void setSightingDate(LocalDate sightingDate) {
+        this.sightingDate = sightingDate;
+    }
+
+    // ObserverName getter/setter
+    public String getObserverName() {
+        return observerName;
+    }
+    public void setObserverName(String observerName) {
+        this.observerName = observerName;
+    }
 }

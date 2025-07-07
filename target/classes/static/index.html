@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bird Viewer</title>
+</head>
+<body>
+    <h1>Birds</h1>
+    <ul id="bird-list"></ul>
+
+    <script>
+        fetch('/birds')
+            .then(response => response.json())
+            .then(data => {
+                const ul = document.getElementById('bird-list');
+                data.forEach(bird => {
+                    const li = document.createElement('li');
+                    li.textContent = `${bird.commonName} (${bird.scientificName})`;
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
