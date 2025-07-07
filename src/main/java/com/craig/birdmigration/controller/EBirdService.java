@@ -21,10 +21,15 @@ public class EBirdService {
     */
 
     public String getRecentObservations(String regionCode) {
+        String apiKey = System.getenv("EBIRD_API_TOKEN"); // Read from env at method level
         RestTemplate restTemplate = new RestTemplate();
 
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new RuntimeException("EBIRD_API_TOKEN is not set in the environment");
+        }
+
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-eBirdApiToken", API_KEY);
+        headers.set("X-eBirdApiToken", apiKey);  // Use local variable
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String url = BASE_URL + "/" + regionCode + "/recent";

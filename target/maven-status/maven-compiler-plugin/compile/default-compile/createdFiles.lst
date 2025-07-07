@@ -1,7 +1,0 @@
-com/craig/birdmigration/dto/EBirdObservation.class
-com/craig/birdmigration/model/Bird.class
-com/craig/birdmigration/repository/BirdRepository.class
-com/craig/birdmigration/controller/EBirdController.class
-com/craig/birdmigration/controller/BirdController.class
-com/craig/birdmigration/BirdMigrationApplication.class
-com/craig/birdmigration/service/EBirdService.class

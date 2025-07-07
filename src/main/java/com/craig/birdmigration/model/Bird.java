@@ -8,6 +8,7 @@ import jakarta.persistence.*;
  */
 
 @Entity
+@Table(name = "birds")
 public class Bird {
 
     @Id
