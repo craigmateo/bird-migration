@@ -10,6 +10,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Provides fallback search using the eBird API when no matching birds are found locally.
+*/
+
 @RestController
 @RequestMapping("/api/ebird")
 public class EBirdController {
@@ -21,6 +25,11 @@ public class EBirdController {
         this.birdRepository = birdRepository;
         this.restTemplate = new RestTemplate();
     }
+
+    /**
+     * Searches for birds by common name.
+     * If no local matches are found, fetches results from the eBird API and saves them.
+    */
 
     @GetMapping("/bird/{name}")
     public List<Bird> getBirdByName(@PathVariable String name) {

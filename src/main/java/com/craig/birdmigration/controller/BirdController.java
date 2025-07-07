@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Exposes REST endpoints for managing birds stored in the local database.
+*/
+
 @RestController
 @RequestMapping("/birds")
 public class BirdController {
@@ -16,11 +20,17 @@ public class BirdController {
         this.birdRepository = birdRepository;
     }
 
+    /**
+     * Returns all birds from the local database.
+    */
     @GetMapping
     public List<Bird> getAllBirds() {
         return birdRepository.findAll();
     }
 
+    /**
+     * Saves a new bird to the local database.
+    */
     @PostMapping
     public Bird addBird(@RequestBody Bird bird) {
         return birdRepository.save(bird);

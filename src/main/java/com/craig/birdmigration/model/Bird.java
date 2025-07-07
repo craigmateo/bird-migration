@@ -2,6 +2,11 @@ package com.craig.birdmigration.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Represents a bird record in the database.
+ * Maps to the 'birds' table via JPA/Hibernate.
+ */
+
 @Entity
 public class Bird {
 
